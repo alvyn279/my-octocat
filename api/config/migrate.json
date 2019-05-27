@@ -1,0 +1,5 @@
+{
+    "dbConnectionUri": "mongodb://localhost/my-octocat",
+    "migrationsDir": "database/migrations",
+    "es6": true
+}
