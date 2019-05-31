@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import _ from "../config/env";
 
 export class DatabaseConnection {
     constructor() {
@@ -8,14 +9,12 @@ export class DatabaseConnection {
         this._connect();
     }
 
-    _connect() {
-        mongoose
-            .connect(`mongodb://${this.hostname}:${this.port}/${this.database}`)
-            .then(() => {
-                console.log("Connected to MongoDB");
-            })
-            .catch(err => {
-                console.error("Error connecting to database");
-            });
+    async _connect() {
+        try {
+            await mongoose.connect(`mongodb://${this.hostname}:${this.port}/${this.database}`);
+            console.log('Connected to Mongo!');
+        } catch(err) {
+            console.error('Failed connection to Mongo', err);
+        }
     }
 }

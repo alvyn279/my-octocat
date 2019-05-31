@@ -1,14 +1,18 @@
+import User from "../../models/User";
+import { DatabaseConnection } from "../database";
 
-/**
- * Make any changes you need to make to the database here
- */
-export async function up () {
-  // Write migration here
+export async function up() {
+    let db = new DatabaseConnection();
+    let testUser = new User({
+        username: "tester",
+        fullname: "TFBAG"
+    });
+    let a = await testUser.save();
 }
 
-/**
- * Make any changes that UNDO the up function side effects here (if possible)
- */
-export async function down () {
-  // Write migration here
+export async function down() {
+    console.log("hi");
+    let db = new DatabaseConnection();
+    await this("User").remove();
+    await this('Repository').remove();
 }
