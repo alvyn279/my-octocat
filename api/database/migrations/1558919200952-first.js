@@ -7,12 +7,10 @@ export async function up() {
         username: "tester",
         fullname: "TFBAG"
     });
-    let a = await testUser.save();
+    await testUser.save();
 }
 
 export async function down() {
-    console.log("hi");
     let db = new DatabaseConnection();
-    await this("User").remove();
-    await this('Repository').remove();
+    await User.remove();
 }
