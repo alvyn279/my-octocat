@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import {Platform, Text, View} from 'react-native';
+import {Provider} from 'react-redux';
+
 import * as Theme from './styles/theme'
+import {getStore} from "./store";
+import NetworkBar from "./components/elements/network-bar";
 
 export default class App extends Component {
 
@@ -19,15 +23,20 @@ export default class App extends Component {
 
     render() {
         const {instructions} = this.state;
+        const store = getStore();
 
         return (
-            <View style={Theme.styles.container}>
-                <Text style={Theme.styles.welcome}>Welcome to React Native!</Text>
-                <Text style={Theme.styles.instructions}>To get started, edit App.js</Text>
-                <Text style={Theme.styles.instructions}>{instructions}</Text>
-            </View>
+            <Provider store={store}>
+
+                <NetworkBar />
+
+                <View style={Theme.styles.container}>
+                    <Text style={Theme.styles.welcome}>Welcome to React Native!</Text>
+                    <Text style={Theme.styles.instructions}>To get started, edit App.js</Text>
+                    <Text style={Theme.styles.instructions}>{instructions}</Text>
+                </View>
+            </Provider>
+
         );
     }
 }
-
-
